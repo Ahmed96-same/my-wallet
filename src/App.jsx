@@ -1,10 +1,10 @@
 import { useState, useCallback } from "react";
 
 const C = {
-  bg:"#05080f",s1:"#09111f",s2:"#0e1a2e",s3:"#142035",s4:"#1b2c45",
-  bdr:"rgba(255,255,255,0.055)",bdrH:"rgba(255,255,255,0.12)",
-  text:"#d8e8ff",muted:"rgba(216,232,255,0.46)",hint:"rgba(216,232,255,0.2)",
-  gold:"#e9bc52",coral:"#ff5f5f",teal:"#2dd4bf",amber:"#fb923c",green:"#4ade80",blue:"#60a5fa",
+  bg:"#f8f6f0",s1:"#ffffff",s2:"#f0ede6",s3:"#e8e4db",s4:"#1a1a2e",
+  bdr:"rgba(26,26,46,0.09)",bdrH:"rgba(26,26,46,0.18)",
+  text:"#1a1a2e",muted:"rgba(26,26,46,0.55)",hint:"rgba(26,26,46,0.35)",
+  gold:"#c9921a",coral:"#e03535",teal:"#0d9488",amber:"#d97706",green:"#16a34a",blue:"#2563eb",
 };
 
 const CATS=[
@@ -32,7 +32,7 @@ const STYLES=`
   @keyframes sheetUp{from{transform:translateY(100%)}to{transform:none}}
   @keyframes fadeIn{from{opacity:0}to{opacity:1}}
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
-  html,body,#root{background:#05080f;min-height:100vh}
+  html,body,#root{background:#f8f6f0;min-height:100vh}
   input,select,button{font-family:inherit}
   input:focus,select:focus{outline:2px solid rgba(233,188,82,.35);outline-offset:0}
   input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
@@ -59,7 +59,7 @@ function Sheet({title,onClose,children}){
       <div style={{position:"absolute",bottom:0,left:0,right:0,background:C.s2,borderRadius:"22px 22px 0 0",padding:"0 20px 40px",maxHeight:"88vh",overflowY:"auto",animation:"sheetUp .28s cubic-bezier(.32,.72,0,1)"}} onClick={e=>e.stopPropagation()}>
         <div style={{width:38,height:4,background:C.bdrH,borderRadius:2,margin:"14px auto 22px"}}/>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:22}}>
-          <span style={{fontSize:17,fontWeight:700}}>{title}</span>
+          <span style={{fontSize:19,fontWeight:700}}>{title}</span>
           <button onClick={onClose} style={{width:30,height:30,borderRadius:"50%",background:C.s3,border:`1px solid ${C.bdrH}`,color:C.muted,fontSize:18,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>×</button>
         </div>
         {children}
@@ -68,8 +68,8 @@ function Sheet({title,onClose,children}){
   );
 }
 
-const inp={width:"100%",background:C.s3,border:`1px solid ${C.bdrH}`,borderRadius:12,padding:"14px 15px",color:C.text,fontSize:15,marginBottom:14};
-const lbl={display:"block",fontSize:11,color:C.muted,marginBottom:6,fontWeight:600,letterSpacing:.8};
+const inp={width:"100%",background:C.s3,border:`1px solid ${C.bdrH}`,borderRadius:12,padding:"14px 15px",color:C.text,fontSize:17,marginBottom:14};
+const lbl={display:"block",fontSize:13,color:C.muted,marginBottom:6,fontWeight:600,letterSpacing:.8};
 
 function Field({label,...p}){return<div><label style={lbl}>{label}</label><input style={inp} {...p}/></div>;}
 function Sel({label,options,value,onChange}){
@@ -83,7 +83,7 @@ function Sel({label,options,value,onChange}){
   );
 }
 function SaveBtn({onClick}){
-  return<button onClick={onClick} style={{width:"100%",padding:"16px",borderRadius:14,border:"none",background:`linear-gradient(135deg,${C.gold},#c99a32)`,color:"#150d00",fontWeight:800,fontSize:15,cursor:"pointer",marginTop:6}}>حفظ</button>;
+  return<button onClick={onClick} style={{width:"100%",padding:"16px",borderRadius:14,border:"none",background:`linear-gradient(135deg,${C.gold},#c99a32)`,color:"#150d00",fontWeight:800,fontSize:17,cursor:"pointer",marginTop:6}}>حفظ</button>;
 }
 
 function Donut({data,total}){
@@ -105,7 +105,7 @@ function Donut({data,total}){
 }
 
 function Empty({text}){
-  return<div style={{padding:"44px 20px",textAlign:"center",color:C.hint}}><div style={{fontSize:40,marginBottom:12,opacity:.3}}>◯</div><div style={{fontSize:13}}>{text}</div></div>;
+  return<div style={{padding:"44px 20px",textAlign:"center",color:C.hint}}><div style={{fontSize:40,marginBottom:12,opacity:.3}}>◯</div><div style={{fontSize:15}}>{text}</div></div>;
 }
 
 function ExpRow({item,onDelete}){
@@ -115,12 +115,12 @@ function ExpRow({item,onDelete}){
         <div style={{width:10,height:10,borderRadius:3,background:catC(item.category)}}/>
       </div>
       <div style={{flex:1,minWidth:0}}>
-        <div style={{fontSize:14,fontWeight:600}}>{item.category}</div>
-        <div style={{fontSize:11,color:C.muted,marginTop:3}}>{item.note||"—"} · {item.date}</div>
+        <div style={{fontSize:16,fontWeight:600}}>{item.category}</div>
+        <div style={{fontSize:13,color:C.muted,marginTop:3}}>{item.note||"—"} · {item.date}</div>
       </div>
       <div style={{flexShrink:0,textAlign:"left"}}>
-        <div style={{fontSize:14,fontWeight:700,color:C.coral}}>-{SHORT(item.amount)}</div>
-        <div style={{fontSize:9,color:C.hint,textAlign:"center"}}>د.ع</div>
+        <div style={{fontSize:16,fontWeight:700,color:C.coral}}>-{SHORT(item.amount)}</div>
+        <div style={{fontSize:11,color:C.hint,textAlign:"center"}}>د.ع</div>
       </div>
       {onDelete&&<button onClick={()=>onDelete(item.id)} style={{background:"none",border:"none",color:C.hint,cursor:"pointer",fontSize:19,lineHeight:1,padding:"0 2px",flexShrink:0}}>×</button>}
     </div>
@@ -131,17 +131,17 @@ function IncRow({item,onDelete}){
   const isF=item.type==="ثابت";
   return(
     <div style={{display:"flex",alignItems:"center",gap:12,padding:"13px 16px",borderBottom:`1px solid ${C.bdr}`}}>
-      <div style={{width:38,height:38,borderRadius:11,background:isF?"rgba(74,222,128,.1)":"rgba(96,165,250,.1)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:17,color:isF?C.green:C.blue}}>{isF?"↻":"↺"}</div>
+      <div style={{width:38,height:38,borderRadius:11,background:isF?"rgba(74,222,128,.1)":"rgba(96,165,250,.1)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:19,color:isF?C.green:C.blue}}>{isF?"↻":"↺"}</div>
       <div style={{flex:1,minWidth:0}}>
-        <div style={{fontSize:14,fontWeight:600}}>{item.source||"مدخول"}</div>
+        <div style={{fontSize:16,fontWeight:600}}>{item.source||"مدخول"}</div>
         <div style={{display:"flex",alignItems:"center",gap:6,marginTop:3}}>
-          <span style={{padding:"2px 7px",borderRadius:5,background:isF?"rgba(74,222,128,.12)":"rgba(96,165,250,.12)",color:isF?C.green:C.blue,fontSize:9,fontWeight:600}}>{item.type}</span>
-          <span style={{fontSize:11,color:C.muted}}>{item.date}</span>
+          <span style={{padding:"2px 7px",borderRadius:5,background:isF?"rgba(74,222,128,.12)":"rgba(96,165,250,.12)",color:isF?C.green:C.blue,fontSize:11,fontWeight:600}}>{item.type}</span>
+          <span style={{fontSize:13,color:C.muted}}>{item.date}</span>
         </div>
       </div>
       <div style={{flexShrink:0,textAlign:"left"}}>
-        <div style={{fontSize:14,fontWeight:700,color:C.green}}>+{SHORT(item.amount)}</div>
-        <div style={{fontSize:9,color:C.hint,textAlign:"center"}}>د.ع</div>
+        <div style={{fontSize:16,fontWeight:700,color:C.green}}>+{SHORT(item.amount)}</div>
+        <div style={{fontSize:11,color:C.hint,textAlign:"center"}}>د.ع</div>
       </div>
       <button onClick={()=>onDelete(item.id)} style={{background:"none",border:"none",color:C.hint,cursor:"pointer",fontSize:19,lineHeight:1,padding:"0 2px",flexShrink:0}}>×</button>
     </div>
@@ -152,14 +152,14 @@ function DebtRow({item,type,onDelete,onToggle}){
   const color=type==="lent"?C.teal:C.amber;
   return(
     <div style={{display:"flex",alignItems:"center",gap:12,padding:"13px 16px",borderBottom:`1px solid ${C.bdr}`,opacity:item.paid?.5:1,transition:"opacity .3s"}}>
-      <div style={{width:40,height:40,borderRadius:"50%",background:avC(item.person),display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:13,fontWeight:800,color:"#fff"}}>{initials(item.person)}</div>
+      <div style={{width:40,height:40,borderRadius:"50%",background:avC(item.person),display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:15,fontWeight:800,color:"#fff"}}>{initials(item.person)}</div>
       <div style={{flex:1,minWidth:0}}>
-        <div style={{fontSize:14,fontWeight:600}}>{item.person}</div>
-        <div style={{fontSize:11,color:C.muted,marginTop:3}}>{item.note||"—"} · {item.date}</div>
+        <div style={{fontSize:16,fontWeight:600}}>{item.person}</div>
+        <div style={{fontSize:13,color:C.muted,marginTop:3}}>{item.note||"—"} · {item.date}</div>
       </div>
       <div style={{flexShrink:0,display:"flex",flexDirection:"column",alignItems:"flex-end",gap:5}}>
-        <div style={{fontSize:14,fontWeight:700,color}}>{SHORT(item.amount)}</div>
-        <button onClick={()=>onToggle(item.id)} style={{padding:"3px 9px",borderRadius:6,border:`1px solid ${item.paid?C.green:C.bdrH}`,background:item.paid?"rgba(74,222,128,.12)":"none",color:item.paid?C.green:C.muted,fontSize:9,cursor:"pointer",fontWeight:700,transition:"all .2s"}}>
+        <div style={{fontSize:16,fontWeight:700,color}}>{SHORT(item.amount)}</div>
+        <button onClick={()=>onToggle(item.id)} style={{padding:"3px 9px",borderRadius:6,border:`1px solid ${item.paid?C.green:C.bdrH}`,background:item.paid?"rgba(74,222,128,.12)":"none",color:item.paid?C.green:C.muted,fontSize:11,cursor:"pointer",fontWeight:700,transition:"all .2s"}}>
           {item.paid?"✓ مسدّد":"سدّد"}
         </button>
       </div>
@@ -173,8 +173,8 @@ function Stats({items}){
     <div style={{display:"flex",gap:8,marginBottom:16}}>
       {items.map((d,i)=>(
         <div key={i} style={{flex:1,background:C.s2,border:`1px solid ${C.bdr}`,borderRadius:14,padding:"13px 12px"}}>
-          <div style={{fontSize:10,color:C.muted,marginBottom:5,letterSpacing:.4}}>{d.label}</div>
-          <div style={{fontSize:17,fontWeight:700,color:d.color||C.text,letterSpacing:-.3}}>{d.value}</div>
+          <div style={{fontSize:12,color:C.muted,marginBottom:5,letterSpacing:.4}}>{d.label}</div>
+          <div style={{fontSize:19,fontWeight:700,color:d.color||C.text,letterSpacing:-.3}}>{d.value}</div>
         </div>
       ))}
     </div>
@@ -183,7 +183,7 @@ function Stats({items}){
 
 function AddBtn({onClick,label}){
   return(
-    <button onClick={onClick} style={{width:"100%",padding:"14px",borderRadius:14,border:`1.5px dashed ${C.bdrH}`,background:"none",color:C.muted,cursor:"pointer",fontSize:14,display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:16}}>
+    <button onClick={onClick} style={{width:"100%",padding:"14px",borderRadius:14,border:`1.5px dashed ${C.bdrH}`,background:"none",color:C.muted,cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:16}}>
       <span style={{width:26,height:26,borderRadius:8,background:C.s3,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,color:C.gold,lineHeight:1}}>+</span>
       {label}
     </button>
@@ -210,16 +210,16 @@ function Dashboard({expenses,income,lent,owed,balance,totalIncome,totalExpenses,
   const maxBar=Math.max(...bars.map(b=>b[1]),1);
   return(
     <div style={{animation:"slideUp .35s ease"}}>
-      <div style={{background:`linear-gradient(145deg,${C.s3} 0%,#182d48 60%,#0e1d32 100%)`,border:`1px solid ${C.bdrH}`,borderRadius:22,padding:"26px 22px 22px",marginBottom:14,position:"relative",overflow:"hidden"}}>
-        <div style={{position:"absolute",top:-50,left:-50,width:180,height:180,borderRadius:"50%",background:isPos?"rgba(74,222,128,.05)":"rgba(255,95,95,.05)",pointerEvents:"none"}}/>
-        <div style={{fontSize:11,color:C.muted,letterSpacing:2,marginBottom:10,fontWeight:600}}>الرصيد الإجمالي</div>
-        <div style={{fontSize:34,fontWeight:800,color:isPos?C.green:C.coral,letterSpacing:-1,marginBottom:6,lineHeight:1}}>{isPos?"+ ":"- "}{IQD(Math.abs(balance))}</div>
-        <div style={{fontSize:11,color:C.hint,marginBottom:22}}>{isPos?"مبروك! أنت في مأمن مالي ✓":"تنبّه! مصاريفك تتجاوز مدخولك"}</div>
-        <div style={{display:"flex",gap:0,background:C.s1,borderRadius:14,overflow:"hidden",border:`1px solid ${C.bdr}`}}>
-          {[{label:"مدخول ↓",val:totalIncome,color:C.green},{label:"مصاريف ↑",val:totalExpenses,color:C.coral},{label:"هذا الشهر",val:mBal,color:mBal>=0?C.green:C.coral}].map((d,i)=>(
-            <div key={i} style={{flex:1,padding:"11px 0",textAlign:"center",borderRight:i<2?`1px solid ${C.bdr}`:"none"}}>
-              <div style={{fontSize:9,color:C.hint,marginBottom:4,letterSpacing:.5}}>{d.label}</div>
-              <div style={{fontSize:13,fontWeight:700,color:d.color}}>{SHORT(d.val)}</div>
+      <div style={{background:`linear-gradient(145deg,#1a1a2e 0%,#2d2d5e 60%,#1a1a2e 100%)`,border:`1px solid rgba(255,255,255,0.1)`,borderRadius:22,padding:"26px 22px 22px",marginBottom:14,position:"relative",overflow:"hidden"}}>
+        <div style={{position:"absolute",top:-50,left:-50,width:180,height:180,borderRadius:"50%",background:isPos?"rgba(233,188,82,.08)":"rgba(255,95,95,.08)",pointerEvents:"none"}}/>
+        <div style={{fontSize:13,color:"rgba(255,255,255,.5)",letterSpacing:2,marginBottom:10,fontWeight:600}}>الرصيد الإجمالي</div>
+        <div style={{fontSize:36,fontWeight:800,color:isPos?"#e9bc52":"#ff6b6b",letterSpacing:-1,marginBottom:6,lineHeight:1}}>{isPos?"+ ":"- "}{IQD(Math.abs(balance))}</div>
+        <div style={{fontSize:13,color:"rgba(255,255,255,.35)",marginBottom:22}}>{isPos?"مبروك! أنت في مأمن مالي ✓":"تنبّه! مصاريفك تتجاوز مدخولك"}</div>
+        <div style={{display:"flex",gap:0,background:"rgba(255,255,255,0.08)",borderRadius:14,overflow:"hidden",border:"1px solid rgba(255,255,255,0.1)"}}>
+          {[{label:"مدخول ↓",val:totalIncome,color:"#4ade80"},{label:"مصاريف ↑",val:totalExpenses,color:"#ff6b6b"},{label:"هذا الشهر",val:mBal,color:mBal>=0?"#4ade80":"#ff6b6b"}].map((d,i)=>(
+            <div key={i} style={{flex:1,padding:"11px 0",textAlign:"center",borderRight:i<2?"1px solid rgba(255,255,255,0.1)":"none"}}>
+              <div style={{fontSize:11,color:"rgba(255,255,255,.4)",marginBottom:4,letterSpacing:.5}}>{d.label}</div>
+              <div style={{fontSize:15,fontWeight:700,color:d.color}}>{SHORT(d.val)}</div>
             </div>
           ))}
         </div>
@@ -228,30 +228,30 @@ function Dashboard({expenses,income,lent,owed,balance,totalIncome,totalExpenses,
         {[{label:"ديون لي",val:totalLent,color:C.teal,icon:"⟵",tab:3,count:lent.filter(d=>!d.paid).length},{label:"ديون عليّ",val:totalOwed,color:C.amber,icon:"⟶",tab:4,count:owed.filter(d=>!d.paid).length}].map((d,i)=>(
           <div key={i} onClick={()=>setTab(d.tab)} style={{background:C.s2,border:`1px solid ${C.bdr}`,borderRadius:16,padding:"14px 16px",cursor:"pointer",position:"relative",overflow:"hidden"}}>
             <div style={{position:"absolute",top:-12,left:-12,width:60,height:60,borderRadius:"50%",background:`${d.color}0a`}}/>
-            <div style={{fontSize:11,color:C.muted,marginBottom:2}}>{d.icon} {d.label}</div>
-            <div style={{fontSize:9,color:C.hint,marginBottom:10}}>غير مسددة</div>
-            <div style={{fontSize:20,fontWeight:800,color:d.color,letterSpacing:-.5}}>{SHORT(d.val)}</div>
-            <div style={{fontSize:9,color:C.hint,marginTop:2}}>{d.count} شخص</div>
+            <div style={{fontSize:13,color:C.muted,marginBottom:2}}>{d.icon} {d.label}</div>
+            <div style={{fontSize:11,color:C.hint,marginBottom:10}}>غير مسددة</div>
+            <div style={{fontSize:22,fontWeight:800,color:d.color,letterSpacing:-.5}}>{SHORT(d.val)}</div>
+            <div style={{fontSize:11,color:C.hint,marginTop:2}}>{d.count} شخص</div>
           </div>
         ))}
       </div>
       {mInc>0&&(
         <div style={{background:C.s2,border:`1px solid ${C.bdr}`,borderRadius:16,padding:"16px 18px",marginBottom:14}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:12}}>
-            <span style={{fontSize:13,fontWeight:600}}>إنفاق هذا الشهر</span>
-            <span style={{fontSize:20,fontWeight:800,color:pct>80?C.coral:pct>55?C.amber:C.green}}>{pct}٪</span>
+            <span style={{fontSize:15,fontWeight:600}}>إنفاق هذا الشهر</span>
+            <span style={{fontSize:22,fontWeight:800,color:pct>80?C.coral:pct>55?C.amber:C.green}}>{pct}٪</span>
           </div>
           <div style={{height:9,background:C.s3,borderRadius:99,overflow:"hidden",marginBottom:10}}>
             <div style={{height:"100%",borderRadius:99,width:`${pct}%`,background:pct>80?`linear-gradient(90deg,${C.amber},${C.coral})`:pct>55?C.amber:C.green,transition:"width .9s ease"}}/>
           </div>
-          <div style={{display:"flex",justifyContent:"space-between",fontSize:11,color:C.muted}}>
+          <div style={{display:"flex",justifyContent:"space-between",fontSize:13,color:C.muted}}>
             <span>صرفت {SHORT(mExp)} د.ع</span><span>من أصل {SHORT(mInc)} د.ع</span>
           </div>
         </div>
       )}
       {catData.length>0&&(
         <div style={{background:C.s2,border:`1px solid ${C.bdr}`,borderRadius:16,padding:"16px 18px",marginBottom:14}}>
-          <div style={{fontSize:13,fontWeight:600,marginBottom:14}}>توزيع المصاريف</div>
+          <div style={{fontSize:15,fontWeight:600,marginBottom:14}}>توزيع المصاريف</div>
           <div style={{display:"flex",gap:16,alignItems:"center"}}>
             <Donut data={catData} total={totalExpenses}/>
             <div style={{flex:1}}>
@@ -259,13 +259,13 @@ function Dashboard({expenses,income,lent,owed,balance,totalIncome,totalExpenses,
                 <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:9}}>
                   <div style={{display:"flex",alignItems:"center",gap:7}}>
                     <div style={{width:8,height:8,borderRadius:2,background:d.c,flexShrink:0}}/>
-                    <span style={{fontSize:11,color:C.muted}}>{d.l}</span>
+                    <span style={{fontSize:13,color:C.muted}}>{d.l}</span>
                   </div>
                   <div style={{display:"flex",alignItems:"center",gap:8}}>
                     <div style={{width:50,height:4,borderRadius:2,background:C.s3,overflow:"hidden"}}>
                       <div style={{height:"100%",background:d.c,width:`${Math.round(d.val/totalExpenses*100)}%`,borderRadius:2}}/>
                     </div>
-                    <span style={{fontSize:11,fontWeight:600,minWidth:28,textAlign:"left"}}>{Math.round(d.val/totalExpenses*100)}٪</span>
+                    <span style={{fontSize:13,fontWeight:600,minWidth:28,textAlign:"left"}}>{Math.round(d.val/totalExpenses*100)}٪</span>
                   </div>
                 </div>
               ))}
@@ -275,15 +275,15 @@ function Dashboard({expenses,income,lent,owed,balance,totalIncome,totalExpenses,
       )}
       {bars.length>1&&(
         <div style={{background:C.s2,border:`1px solid ${C.bdr}`,borderRadius:16,padding:"16px 18px",marginBottom:14}}>
-          <div style={{fontSize:13,fontWeight:600,marginBottom:16}}>المصاريف الشهرية</div>
+          <div style={{fontSize:15,fontWeight:600,marginBottom:16}}>المصاريف الشهرية</div>
           <div style={{display:"flex",gap:6,alignItems:"flex-end",height:90}}>
             {bars.map(([m,v],i)=>{
               const h=Math.round(v/maxBar*78),isLast=i===bars.length-1;
               return(
                 <div key={m} style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:6}}>
-                  <div style={{fontSize:10,color:isLast?C.coral:C.hint,fontWeight:isLast?700:400}}>{SHORT(v)}</div>
+                  <div style={{fontSize:12,color:isLast?C.coral:C.hint,fontWeight:isLast?700:400}}>{SHORT(v)}</div>
                   <div style={{width:"100%",borderRadius:"5px 5px 0 0",background:isLast?C.coral:C.s4,height:`${h}px`,minHeight:4}}/>
-                  <div style={{fontSize:9,color:C.hint}}>{m.slice(5)}</div>
+                  <div style={{fontSize:11,color:C.hint}}>{m.slice(5)}</div>
                 </div>
               );
             })}
@@ -292,7 +292,7 @@ function Dashboard({expenses,income,lent,owed,balance,totalIncome,totalExpenses,
       )}
       {expenses.slice(0,3).length>0&&(
         <div style={{marginBottom:14}}>
-          <div style={{fontSize:13,fontWeight:600,marginBottom:10,color:C.muted}}>آخر المصاريف</div>
+          <div style={{fontSize:15,fontWeight:600,marginBottom:10,color:C.muted}}>آخر المصاريف</div>
           <SCard>{expenses.slice(0,3).map(e=><ExpRow key={e.id} item={e}/>)}</SCard>
         </div>
       )}
@@ -372,7 +372,52 @@ function DebtTab({debts,setDebts,type}){
   );
 }
 
-const TABS=[{icon:"◈",label:"الرئيسية"},{icon:"↑",label:"المصاريف"},{icon:"↓",label:"المدخول"},{icon:"⟵",label:"ديون لي"},{icon:"⟶",label:"ديون عليّ"}];
+// ─── Nav Icons ────────────────────────────────────────────────────
+const NAV_ICONS = [
+  (active) => (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="8" width="20" height="13" rx="3"
+        stroke={active?"#c9921a":"#9ca3af"} strokeWidth="1.8" fill={active?"rgba(201,146,26,.1)":"none"}/>
+      <path d="M2 11h20" stroke={active?"#c9921a":"#9ca3af"} strokeWidth="1.8"/>
+      <rect x="14" y="14" width="5" height="4" rx="2"
+        fill={active?"#c9921a":"none"} stroke={active?"#c9921a":"#9ca3af"} strokeWidth="1.5"/>
+    </svg>
+  ),
+  (active) => (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="13" r="7"
+        stroke={active?"#e03535":"#9ca3af"} strokeWidth="1.8" fill={active?"rgba(224,53,53,.1)":"none"}/>
+      <path d="M12 17v-8M9 12l3-3 3 3"
+        stroke={active?"#e03535":"#9ca3af"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  (active) => (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="13" r="7"
+        stroke={active?"#16a34a":"#9ca3af"} strokeWidth="1.8" fill={active?"rgba(22,163,74,.1)":"none"}/>
+      <path d="M12 9v8M9 14l3 3 3-3"
+        stroke={active?"#16a34a":"#9ca3af"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  (active) => (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+      <path d="M20 12H8M14 7l-6 5 6 5"
+        stroke={active?"#0d9488":"#9ca3af"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M4 7v10"
+        stroke={active?"#0d9488":"#9ca3af"} strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  ),
+  (active) => (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+      <path d="M4 12h12M12 7l6 5-6 5"
+        stroke={active?"#d97706":"#9ca3af"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M20 7v10"
+        stroke={active?"#d97706":"#9ca3af"} strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  ),
+];
+
+const TAB_LABELS = ["الرئيسية","المصاريف","المدخول","ديون لي","ديون عليّ"];
 
 export default function App(){
   const[tab,setTab]=useState(0);
@@ -395,23 +440,28 @@ export default function App(){
   return(
     <>
       <style>{STYLES}</style>
-      <div dir="rtl" style={{background:C.bg,minHeight:"100vh",color:C.text,fontFamily:"'Segoe UI',Tahoma,system-ui,sans-serif",maxWidth:430,margin:"0 auto",paddingBottom:90}}>
+      <div dir="rtl" style={{background:C.bg,minHeight:"100vh",color:C.text,fontFamily:"'Segoe UI',Tahoma,system-ui,sans-serif",maxWidth:430,margin:"0 auto",paddingBottom:95}}>
         <div style={{padding:"24px 20px 14px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
           <div>
-            <div style={{fontSize:10,color:C.hint,letterSpacing:3,fontWeight:600,marginBottom:3}}>MY WALLET</div>
-            <div style={{fontSize:22,fontWeight:800,letterSpacing:-.5}}>محفظتي</div>
+            <div style={{fontSize:12,color:C.hint,letterSpacing:3,fontWeight:600,marginBottom:3}}>MY WALLET</div>
+            <div style={{fontSize:24,fontWeight:800,letterSpacing:-.5}}>محفظتي</div>
           </div>
           <div style={{width:42,height:42,borderRadius:"50%",background:`linear-gradient(135deg,${C.s3},${C.s4})`,border:`1.5px solid ${C.gold}44`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,fontWeight:800,color:C.gold}}>أ</div>
         </div>
         <div style={{padding:"0 16px"}}>{pages[tab]}</div>
-        <nav style={{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:430,background:C.s1,borderTop:`1px solid ${C.bdr}`,display:"flex",alignItems:"center",padding:"8px 0 18px",zIndex:99}}>
-          {TABS.map((t,i)=>(
-            <button key={i} onClick={()=>setTab(i)} style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:4,background:"none",border:"none",cursor:"pointer",padding:"4px 0",color:tab===i?C.gold:C.hint,transition:"color .2s"}}>
-              <div style={{height:2,width:tab===i?24:0,background:C.gold,borderRadius:1,transition:"width .25s ease",marginBottom:2}}/>
-              <span style={{fontSize:17,lineHeight:1}}>{t.icon}</span>
-              <span style={{fontSize:9,fontWeight:tab===i?700:400,letterSpacing:.5}}>{t.label}</span>
-            </button>
-          ))}
+        <nav style={{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:430,background:"#ffffff",borderTop:"0.5px solid rgba(26,26,46,0.1)",boxShadow:"0 -4px 20px rgba(26,26,46,0.08)",display:"flex",alignItems:"center",padding:"10px 0 20px",zIndex:99}}>
+          {TAB_LABELS.map((label,i)=>{
+            const active=tab===i;
+            const activeColors=["#c9921a","#e03535","#16a34a","#0d9488","#d97706"];
+            const inactiveColor="#9ca3af";
+            return(
+              <button key={i} onClick={()=>setTab(i)} style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:5,background:"none",border:"none",cursor:"pointer",padding:"4px 0",transition:"all .2s"}}>
+                <div style={{width:active?32:0,height:3,background:activeColors[i],borderRadius:2,transition:"width .25s ease",marginBottom:2}}/>
+                {NAV_ICONS[i](active)}
+                <span style={{fontSize:12,fontWeight:active?700:400,color:active?activeColors[i]:inactiveColor,letterSpacing:.3,transition:"color .2s"}}>{label}</span>
+              </button>
+            );
+          })}
         </nav>
       </div>
     </>
