@@ -1,4 +1,7 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { db, auth } from "./firebase";
+import { doc, onSnapshot, setDoc } from "firebase/firestore";
+import { signInAnonymously } from "firebase/auth";
 
 const C = {
   bg:"#f8f6f0",s1:"#ffffff",s2:"#f0ede6",s3:"#e8e4db",s4:"#1a1a2e",
@@ -39,18 +42,63 @@ const STYLES=`
   ::-webkit-scrollbar{width:0;height:0}
 `;
 
-function useStorage(key,init){
-  const[data,setData]=useState(()=>{
-    try{const s=localStorage.getItem(key);return s?JSON.parse(s):init;}catch{return init;}
-  });
-  const save=useCallback((val)=>{
-    setData(prev=>{
-      const next=typeof val==="function"?val(prev):val;
-      try{localStorage.setItem(key,JSON.stringify(next));}catch{}
+// ─── Firebase Hook ────────────────────────────────────────────────
+function useWalletData() {
+  const [uid, setUid]           = useState(null);
+  const [ready, setReady]       = useState(false);
+  const [expenses, setExpenses] = useState([]);
+  const [income,   setIncome]   = useState([]);
+  const [lent,     setLent]     = useState([]);
+  const [owed,     setOwed]     = useState([]);
+
+  useEffect(() => {
+    signInAnonymously(auth)
+      .then(cred => setUid(cred.user.uid))
+      .catch(() => {
+        try {
+          setExpenses(JSON.parse(localStorage.getItem("pf-exp")||"[]"));
+          setIncome(JSON.parse(localStorage.getItem("pf-inc")||"[]"));
+          setLent(JSON.parse(localStorage.getItem("pf-lnt")||"[]"));
+          setOwed(JSON.parse(localStorage.getItem("pf-owd")||"[]"));
+        } catch {}
+        setReady(true);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!uid) return;
+    const ref = doc(db, "wallets", uid);
+    const unsub = onSnapshot(ref, snap => {
+      if (snap.exists()) {
+        const d = snap.data();
+        if (d.expenses) setExpenses(d.expenses);
+        if (d.income)   setIncome(d.income);
+        if (d.lent)     setLent(d.lent);
+        if (d.owed)     setOwed(d.owed);
+      }
+      setReady(true);
+    });
+    return unsub;
+  }, [uid]);
+
+  const save = useCallback((field, val) => {
+    const updater = (setter) => setter(prev => {
+      const next = typeof val === "function" ? val(prev) : val;
+      if (uid) {
+        setDoc(doc(db, "wallets", uid), { [field]: next }, { merge: true })
+          .catch(() => localStorage.setItem("pf-"+field, JSON.stringify(next)));
+      } else {
+        localStorage.setItem("pf-"+field, JSON.stringify(next));
+      }
       return next;
     });
-  },[key]);
-  return[data,save];
+    if (field === "expenses") updater(setExpenses);
+    if (field === "income")   updater(setIncome);
+    if (field === "lent")     updater(setLent);
+    if (field === "owed")     updater(setOwed);
+  }, [uid]);
+
+  return { ready, expenses, income, lent, owed, save };
 }
 
 function Sheet({title,onClose,children}){
@@ -420,22 +468,36 @@ const NAV_ICONS = [
 const TAB_LABELS = ["الرئيسية","المصاريف","المدخول","ديون لي","ديون عليّ"];
 
 export default function App(){
-  const[tab,setTab]=useState(0);
-  const[expenses,setExpenses]=useStorage("pf-exp",[]);
-  const[income,setIncome]=useStorage("pf-inc",[]);
-  const[lent,setLent]=useStorage("pf-lnt",[]);
-  const[owed,setOwed]=useStorage("pf-owd",[]);
-  const totalIncome=income.reduce((s,i)=>s+Number(i.amount),0);
+  const [tab, setTab] = useState(0);
+  const { ready, expenses, income, lent, owed, save } = useWalletData();
+
+  const setExpenses = useCallback((val) => save("expenses", val), [save]);
+  const setIncome   = useCallback((val) => save("income",   val), [save]);
+  const setLent     = useCallback((val) => save("lent",     val), [save]);
+  const setOwed     = useCallback((val) => save("owed",     val), [save]);
+
+  const totalIncome  =income.reduce((s,i)=>s+Number(i.amount),0);
   const totalExpenses=expenses.reduce((s,e)=>s+Number(e.amount),0);
-  const balance=totalIncome-totalExpenses;
-  const totalLent=lent.filter(d=>!d.paid).reduce((s,d)=>s+Number(d.amount),0);
-  const totalOwed=owed.filter(d=>!d.paid).reduce((s,d)=>s+Number(d.amount),0);
+  const balance      =totalIncome-totalExpenses;
+  const totalLent    =lent.filter(d=>!d.paid).reduce((s,d)=>s+Number(d.amount),0);
+  const totalOwed    =owed.filter(d=>!d.paid).reduce((s,d)=>s+Number(d.amount),0);
+
+  if (!ready) return (
+    <>
+      <style>{STYLES}</style>
+      <div style={{background:C.bg,minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:16}}>
+        <div style={{width:48,height:48,borderRadius:14,background:`linear-gradient(135deg,#1a1a2e,#2d2d5e)`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,fontWeight:800,color:"#e9bc52"}}>م</div>
+        <div style={{fontSize:15,color:C.muted}}>جاري التحميل...</div>
+      </div>
+    </>
+  );
+
   const pages=[
     <Dashboard key="d" {...{expenses,income,lent,owed,balance,totalIncome,totalExpenses,totalLent,totalOwed,setTab}}/>,
     <ExpensesTab key="e" expenses={expenses} setExpenses={setExpenses}/>,
-    <IncomeTab key="i" income={income} setIncome={setIncome}/>,
-    <DebtTab key="l" debts={lent} setDebts={setLent} type="lent"/>,
-    <DebtTab key="o" debts={owed} setDebts={setOwed} type="owed"/>,
+    <IncomeTab   key="i" income={income}     setIncome={setIncome}/>,
+    <DebtTab     key="l" debts={lent}        setDebts={setLent}   type="lent"/>,
+    <DebtTab     key="o" debts={owed}        setDebts={setOwed}   type="owed"/>,
   ];
   return(
     <>
