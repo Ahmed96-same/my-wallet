@@ -52,17 +52,28 @@ function useWalletData() {
   const [owed,     setOwed]     = useState([]);
 
   useEffect(() => {
-    signInAnonymously(auth)
-      .then(cred => setUid(cred.user.uid))
-      .catch(() => {
-        try {
-          setExpenses(JSON.parse(localStorage.getItem("pf-exp")||"[]"));
-          setIncome(JSON.parse(localStorage.getItem("pf-inc")||"[]"));
-          setLent(JSON.parse(localStorage.getItem("pf-lnt")||"[]"));
-          setOwed(JSON.parse(localStorage.getItem("pf-owd")||"[]"));
-        } catch {}
-        setReady(true);
-      });
+    // انتظر إذا كان المستخدم موجود مسبقاً (من جلسة سابقة)
+    const unsubAuth = auth.onAuthStateChanged(user => {
+      if (user) {
+        // مستخدم موجود — استخدم نفس الـ ID
+        setUid(user.uid);
+      } else {
+        // لا يوجد مستخدم — أنشئ مجهول جديد
+        signInAnonymously(auth)
+          .then(cred => setUid(cred.user.uid))
+          .catch(() => {
+            // offline fallback
+            try {
+              setExpenses(JSON.parse(localStorage.getItem("pf-exp")||"[]"));
+              setIncome(JSON.parse(localStorage.getItem("pf-inc")||"[]"));
+              setLent(JSON.parse(localStorage.getItem("pf-lnt")||"[]"));
+              setOwed(JSON.parse(localStorage.getItem("pf-owd")||"[]"));
+            } catch {}
+            setReady(true);
+          });
+      }
+    });
+    return unsubAuth;
   }, []);
 
   useEffect(() => {
