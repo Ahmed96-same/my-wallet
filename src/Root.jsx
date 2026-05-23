@@ -8,12 +8,16 @@ const STYLES = `
     position:fixed;bottom:0;left:50%;transform:translateX(-50%);
     width:100%;max-width:520px;
     display:flex;border-top:1px solid #252525;
-    background:#0d0d0d;z-index:200;padding:8px 12px 20px;gap:8px;
+    background:#0d0d0d;z-index:200;
+    padding:8px 12px calc(8px + env(safe-area-inset-bottom, 10px));
+    gap:8px;
   }
   .mode-btn{
     flex:1;padding:11px 0;border-radius:12px;border:none;cursor:pointer;
     font-family:inherit;font-size:13px;font-weight:700;
     transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;
+    /* منع تأخير اللمس على iOS */
+    touch-action:manipulation;
   }
   .mode-btn.active-wallet{
     background:linear-gradient(135deg,#1a1a2e,#2d2d5e);

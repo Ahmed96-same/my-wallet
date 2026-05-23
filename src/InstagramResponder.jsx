@@ -28,8 +28,13 @@ const STYLES = `
   @keyframes ripple{0%{transform:scale(0);opacity:.6}100%{transform:scale(2.5);opacity:0}}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body,#root{background:#0d0d0d;min-height:100vh}
-  input,textarea,button,select{font-family:inherit}
+  input,textarea,button,select{
+    font-family:inherit;
+    /* منع iOS من تكبير الخط عند التركيز على الحقل */
+    font-size:max(16px, 1em);
+  }
   textarea:focus,input:focus{outline:none}
+  button{touch-action:manipulation}
   ::-webkit-scrollbar{width:4px;height:4px}
   ::-webkit-scrollbar-track{background:#111}
   ::-webkit-scrollbar-thumb{background:#333;border-radius:2px}
