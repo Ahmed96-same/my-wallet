@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 820" width="900" height="820" font-family="Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="900" height="820" fill="#f8f5f0"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#2c3e50">مخطط الطابق الأول — First Floor</text>
+  <text x="450" y="60" text-anchor="middle" font-size="14" fill="#7f8c8d">المساحة الكلية: 130 م²  |  5 غرف نوم · 7 حمامات في المبنى</text>
+
+  <!-- ═══════════════ BALCONY (top) ═══════════════ -->
+  <rect x="60" y="75" width="780" height="80" fill="#d5f5e3" stroke="#27ae60" stroke-width="2.5" rx="4" stroke-dasharray="8,4"/>
+  <text x="450" y="112" text-anchor="middle" font-size="16" font-weight="bold" fill="#27ae60">بلكونة أمامية — Front Balcony</text>
+  <text x="450" y="132" text-anchor="middle" font-size="12" fill="#27ae60">10م × 1.8م = 18 م²</text>
+
+  <!-- ═══════════════ HOUSE OUTLINE ═══════════════ -->
+  <rect x="60" y="155" width="780" height="560" fill="none" stroke="#2c3e50" stroke-width="4"/>
+
+  <!-- ═══════════════ VERTICAL DIVIDERS ═══════════════ -->
+  <!-- Left zone: x=60 to x=420 (360px = ~4.5م) -->
+  <!-- Center: x=420 to x=480 (60px = ~0.75م corridor) -->
+  <!-- Right zone: x=480 to x=840 (360px = ~4.5م) -->
+
+  <!-- ═══════════════ TOP-LEFT: Bedroom 2 (me + wife) ═══════════════ -->
+  <rect x="60" y="155" width="300" height="270" fill="#fef9e7" stroke="#2c3e50" stroke-width="2.5"/>
+  <!-- Room label -->
+  <text x="210" y="218" text-anchor="middle" font-size="15" font-weight="bold" fill="#e67e22">غرفة 2</text>
+  <text x="210" y="238" text-anchor="middle" font-size="12" fill="#e67e22">أنا + زوجتي</text>
+  <text x="210" y="258" text-anchor="middle" font-size="11" fill="#95a5a6">4م × 4م = 16 م²</text>
+  <!-- Bed symbol -->
+  <rect x="80" y="270" width="140" height="80" fill="#f0d9a0" rx="10" opacity="0.7"/>
+  <rect x="80" y="270" width="68" height="25" fill="#e67e22" rx="5" opacity="0.6"/>
+  <rect x="152" y="270" width="68" height="25" fill="#e67e22" rx="5" opacity="0.6"/>
+  <text x="150" y="325" text-anchor="middle" font-size="10" fill="#7f8c8d">سرير مزدوج</text>
+  <!-- Wardrobe -->
+  <rect x="240" y="165" width="110" height="35" fill="#d5d8dc" rx="3" opacity="0.8"/>
+  <text x="295" y="186" text-anchor="middle" font-size="10" fill="#2c3e50">خزانة</text>
+
+  <!-- Bathroom 2 (private) -->
+  <rect x="360" y="155" width="60" height="270" fill="#d6eaf8" stroke="#2c3e50" stroke-width="2.5"/>
+  <text x="390" y="235" text-anchor="middle" font-size="11" font-weight="bold" fill="#1a5276">حمام</text>
+  <text x="390" y="252" text-anchor="middle" font-size="11" fill="#1a5276">خاص</text>
+  <text x="390" y="270" text-anchor="middle" font-size="10" fill="#1a5276">غرفة 2</text>
+  <text x="390" y="288" text-anchor="middle" font-size="9" fill="#95a5a6">5 م²</text>
+  <!-- Bath symbol -->
+  <rect x="371" y="305" width="38" height="70" fill="#aed6f1" rx="6" stroke="#1a5276" stroke-width="1.5"/>
+  <!-- Toilet symbol -->
+  <ellipse cx="390" cy="390" rx="13" ry="15" fill="#aed6f1" stroke="#1a5276" stroke-width="1.5"/>
+
+  <!-- ═══════════════ BOTTOM-LEFT: Bedroom 3 (brother + wife) ═══════════════ -->
+  <rect x="60" y="425" width="300" height="290" fill="#eaf4fb" stroke="#2c3e50" stroke-width="2.5"/>
+  <text x="210" y="490" text-anchor="middle" font-size="15" font-weight="bold" fill="#2980b9">غرفة 3</text>
+  <text x="210" y="510" text-anchor="middle" font-size="12" fill="#2980b9">أخي + زوجته</text>
+  <text x="210" y="530" text-anchor="middle" font-size="11" fill="#95a5a6">4م × 4م = 16 م²</text>
+  <!-- Bed -->
+  <rect x="80" y="545" width="140" height="80" fill="#a9cce3" rx="10" opacity="0.7"/>
+  <rect x="80" y="545" width="68" height="25" fill="#2980b9" rx="5" opacity="0.6"/>
+  <rect x="152" y="545" width="68" height="25" fill="#2980b9" rx="5" opacity="0.6"/>
+  <!-- Wardrobe -->
+  <rect x="240" y="435" width="110" height="35" fill="#d5d8dc" rx="3" opacity="0.8"/>
+  <text x="295" y="456" text-anchor="middle" font-size="10" fill="#2c3e50">خزانة</text>
+
+  <!-- Bathroom 3 (private) -->
+  <rect x="360" y="425" width="60" height="290" fill="#d6eaf8" stroke="#2c3e50" stroke-width="2.5"/>
+  <text x="390" y="512" text-anchor="middle" font-size="11" font-weight="bold" fill="#1a5276">حمام</text>
+  <text x="390" y="529" text-anchor="middle" font-size="11" fill="#1a5276">خاص</text>
+  <text x="390" y="547" text-anchor="middle" font-size="10" fill="#1a5276">غرفة 3</text>
+  <text x="390" y="565" text-anchor="middle" font-size="9" fill="#95a5a6">5 م²</text>
+  <rect x="371" y="580" width="38" height="70" fill="#aed6f1" rx="6" stroke="#1a5276" stroke-width="1.5"/>
+  <ellipse cx="390" cy="665" rx="13" ry="15" fill="#aed6f1" stroke="#1a5276" stroke-width="1.5"/>
+
+  <!-- ═══════════════ CENTER: Corridor + Stairs ═══════════════ -->
+  <rect x="420" y="155" width="60" height="560" fill="#ecf0f1" stroke="#2c3e50" stroke-width="2"/>
+  <text x="450" y="310" text-anchor="middle" font-size="12" font-weight="bold" fill="#2c3e50">م</text>
+  <text x="450" y="328" text-anchor="middle" font-size="12" fill="#2c3e50">م</text>
+  <text x="450" y="346" text-anchor="middle" font-size="12" fill="#2c3e50">ر</text>
+  <!-- Stair lines in center section -->
+  <text x="450" y="420" text-anchor="middle" font-size="10" font-weight="bold" fill="#7f8c8d">درج</text>
+  <line x1="422" y1="432" x2="478" y2="432" stroke="#7f8c8d" stroke-width="1.5"/>
+  <line x1="422" y1="446" x2="478" y2="446" stroke="#7f8c8d" stroke-width="1.5"/>
+  <line x1="422" y1="460" x2="478" y2="460" stroke="#7f8c8d" stroke-width="1.5"/>
+  <line x1="422" y1="474" x2="478" y2="474" stroke="#7f8c8d" stroke-width="1.5"/>
+  <line x1="422" y1="488" x2="478" y2="488" stroke="#7f8c8d" stroke-width="1.5"/>
+  <line x1="422" y1="502" x2="478" y2="502" stroke="#7f8c8d" stroke-width="1.5"/>
+  <line x1="422" y1="516" x2="478" y2="516" stroke="#7f8c8d" stroke-width="1.5"/>
+  <line x1="422" y1="530" x2="478" y2="530" stroke="#7f8c8d" stroke-width="1.5"/>
+
+  <!-- ═══════════════ TOP-RIGHT: Bedroom 4 (sister) ═══════════════ -->
+  <rect x="480" y="155" width="300" height="270" fill="#f9ebea" stroke="#2c3e50" stroke-width="2.5"/>
+  <text x="630" y="218" text-anchor="middle" font-size="15" font-weight="bold" fill="#c0392b">غرفة 4</text>
+  <text x="630" y="238" text-anchor="middle" font-size="12" fill="#c0392b">أختي</text>
+  <text x="630" y="258" text-anchor="middle" font-size="11" fill="#95a5a6">4م × 3.5م = 14 م²</text>
+  <!-- Bed (single) -->
+  <rect x="530" y="270" width="120" height="70" fill="#f1948a" rx="10" opacity="0.6"/>
+  <rect x="530" y="270" width="120" height="22" fill="#c0392b" rx="5" opacity="0.6"/>
+  <!-- Wardrobe -->
+  <rect x="660" y="165" width="110" height="35" fill="#d5d8dc" rx="3" opacity="0.8"/>
+  <text x="715" y="186" text-anchor="middle" font-size="10" fill="#2c3e50">خزانة</text>
+  <!-- Study desk -->
+  <rect x="660" y="310" width="100" height="60" fill="#a9cce3" rx="4" opacity="0.5"/>
+  <text x="710" y="344" text-anchor="middle" font-size="9" fill="#2c3e50">مكتب</text>
+
+  <!-- Bathroom 4 (private) -->
+  <rect x="780" y="155" width="60" height="270" fill="#d6eaf8" stroke="#2c3e50" stroke-width="2.5"/>
+  <text x="810" y="248" text-anchor="middle" font-size="11" font-weight="bold" fill="#1a5276">حمام</text>
+  <text x="810" y="265" text-anchor="middle" font-size="11" fill="#1a5276">خاص</text>
+  <text x="810" y="282" text-anchor="middle" font-size="10" fill="#1a5276">غرفة 4</text>
+  <text x="810" y="299" text-anchor="middle" font-size="9" fill="#95a5a6">4 م²</text>
+  <rect x="791" y="315" width="38" height="55" fill="#aed6f1" rx="5" stroke="#1a5276" stroke-width="1.5"/>
+  <ellipse cx="810" cy="385" rx="13" ry="14" fill="#aed6f1" stroke="#1a5276" stroke-width="1.5"/>
+
+  <!-- ═══════════════ BOTTOM-RIGHT: Bedroom 5 (Guests) ═══════════════ -->
+  <rect x="480" y="425" width="300" height="220" fill="#f5eef8" stroke="#2c3e50" stroke-width="2.5"/>
+  <text x="630" y="488" text-anchor="middle" font-size="15" font-weight="bold" fill="#8e44ad">غرفة 5</text>
+  <text x="630" y="508" text-anchor="middle" font-size="12" fill="#8e44ad">غرفة الضيوف</text>
+  <text x="630" y="528" text-anchor="middle" font-size="11" fill="#95a5a6">4م × 3.5م = 14 م²</text>
+  <!-- Bed -->
+  <rect x="530" y="545" width="120" height="70" fill="#d2b4de" rx="10" opacity="0.6"/>
+  <rect x="530" y="545" width="57" height="22" fill="#8e44ad" rx="5" opacity="0.6"/>
+  <rect x="593" y="545" width="57" height="22" fill="#8e44ad" rx="5" opacity="0.6"/>
+
+  <!-- Bathroom 5 (private) -->
+  <rect x="780" y="425" width="60" height="220" fill="#d6eaf8" stroke="#2c3e50" stroke-width="2.5"/>
+  <text x="810" y="498" text-anchor="middle" font-size="11" font-weight="bold" fill="#1a5276">حمام</text>
+  <text x="810" y="515" text-anchor="middle" font-size="11" fill="#1a5276">خاص</text>
+  <text x="810" y="532" text-anchor="middle" font-size="10" fill="#1a5276">غرفة 5</text>
+  <text x="810" y="549" text-anchor="middle" font-size="9" fill="#95a5a6">4 م²</text>
+  <rect x="791" y="560" width="38" height="50" fill="#aed6f1" rx="5" stroke="#1a5276" stroke-width="1.5"/>
+  <ellipse cx="810" cy="625" rx="13" ry="14" fill="#aed6f1" stroke="#1a5276" stroke-width="1.5"/>
+
+  <!-- ═══════════════ BOTTOM: Storage + Laundry ═══════════════ -->
+  <rect x="480" y="645" width="300" height="70" fill="#fdfefe" stroke="#2c3e50" stroke-width="2"/>
+  <text x="630" y="682" text-anchor="middle" font-size="13" fill="#7f8c8d">غرفة غسيل + مخزن</text>
+  <text x="630" y="700" text-anchor="middle" font-size="11" fill="#bdc3c7">Laundry + Storage — 8 م²</text>
+
+  <!-- ═══════════════ COMPASS ═══════════════ -->
+  <circle cx="830" cy="108" r="28" fill="white" stroke="#2c3e50" stroke-width="2"/>
+  <text x="830" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c">N ↑</text>
+  <text x="830" y="108" text-anchor="middle" font-size="9" fill="#2c3e50">شمال</text>
+  <text x="830" y="126" text-anchor="middle" font-size="9" fill="#2c3e50">جنوب ↓</text>
+
+  <!-- ═══════════════ BATHROOM BADGE ═══════════════ -->
+  <rect x="60" y="735" width="780" height="75" fill="#eaf4fb" stroke="#2980b9" stroke-width="1.5" rx="6"/>
+  <text x="450" y="762" text-anchor="middle" font-size="14" font-weight="bold" fill="#2980b9">ملخص الحمامات في هذا الطابق</text>
+  <text x="180" y="786" text-anchor="middle" font-size="12" fill="#c0392b">● حمام غرفة 2 (5م²)</text>
+  <text x="370" y="786" text-anchor="middle" font-size="12" fill="#2980b9">● حمام غرفة 3 (5م²)</text>
+  <text x="560" y="786" text-anchor="middle" font-size="12" fill="#c0392b">● حمام غرفة 4 (4م²)</text>
+  <text x="750" y="786" text-anchor="middle" font-size="12" fill="#8e44ad">● حمام غرفة 5 (4م²)</text>
+  <text x="450" y="804" text-anchor="middle" font-size="11" fill="#7f8c8d">+ 3 حمامات في الطابق الأرضي = إجمالي 7 حمامات في المبنى</text>
+
+</svg>
